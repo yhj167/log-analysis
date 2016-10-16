@@ -67,6 +67,9 @@ hello::hello(QWidget *parent)
 	//QTextCodec::setCodecForTr(codec);
 	//QTextCodec::setCodecForCStrings(codec);
 	//QTextCodec::setCodecForLocale(codec);
+
+    cfgFileName = "config.xml";
+    ui.cfgFilePath->setText(QString("%1").arg(cfgFileName));
 }
 
 hello::~hello()
@@ -131,7 +134,7 @@ void hello::about()
 
 int hello::openCfgfile()
 {
-    cfgFileName = "";
+    //cfgFileName = "";
     if(okToContinue()){
         cfgFileName = QFileDialog::getOpenFileName(this,
             tr("please open cfgfile!"),".",
@@ -303,86 +306,6 @@ int hello::readLogFile(char* filename, int currentreadnum)
             break;
         }
     }
-
-#if 0
-    //类型
-    memset(logidx,0, 30*sizeof(unsigned char));
-    switch(file_test[1])
-    {
-    case 0x01: strcpy(logidx,"POWER_ON");break;
-	case 0x02: strcpy(logidx,"RESET");break;
-	case 0x03: strcpy(logidx,"IDR_INSERT");break;
-	case 0x04: strcpy(logidx,"BUFFER_OVERFLOW");break;
-	case 0x05: strcpy(logidx,"DATA_WRITE_START");break;
-	case 0x06: strcpy(logidx,"DATA_WRITE_STOP");break;
-	case 0x07: strcpy(logidx,"IEEE1394_BUSRESET");break;
-	case 0x08: strcpy(logidx,"DATA_WRITE_FAULT");break;
-	case 0x09: strcpy(logidx,"LOG_DSP1_SEMTAKE_ERROR");break;
-	case 0x0A: strcpy(logidx,"LOG_DSP2_SEMTAKE_ERROR");break;
-	case 0x0B: strcpy(logidx,"LOG_DSP3_SEMTAKE_ERROR");break;
-	case 0x0C: strcpy(logidx,"LOG_DSP4_SEMTAKE_ERROR");break;
-	case 0x0D: strcpy(logidx,"LOG_DSP5_SEMTAKE_ERROR");break;
-	case 0x0E: strcpy(logidx,"LOG_TASK_SYSCTRL_SUSPEND");break;
-	case 0x0F: strcpy(logidx,"LOG_TASK_BMFETCH_SUSPEND");break;
-	case 0x10: strcpy(logidx,"LOG_TASK_DATAFETCH_SUSPEND");break;
-	case 0x11: strcpy(logidx,"LOG_TASK_ISRSEND_SUSPEND");break;
-	case 0x12: strcpy(logidx,"LOG_TASK_IDRSEND_SUSPEND");break;//
-	case 0x13: strcpy(logidx,"LOG_TASK_TRANSBS0_SUSPEND");break;
-	case 0x14: strcpy(logidx,"LOG_TASK_TRANSBS1_SUSPEND");break;
-	case 0x15: strcpy(logidx,"LOG_TASK_TRANSBS2_SUSPEND");break;
-	case 0x16: strcpy(logidx,"LOG_TASK_TRANSBS3_SUSPEND");break;
-	case 0x17: strcpy(logidx,"LOG_TASK_TRANSBS4_SUSPEND");break;
-	case 0x18: strcpy(logidx,"LOG_CMD_START_VIDEO_RECORD");break;
-	case 0x19: strcpy(logidx,"LOG_CMD_STOP_VIDEO_RECORD");break;
-	case 0x1A: strcpy(logidx,"LOG_EXECUTE_CMD_START_RECORD");break;
-	case 0x1B: strcpy(logidx,"LOG_EXECUTE_CMD_STOP_RECORD");break;
-	case 0x1C: strcpy(logidx,"LOG_TASK_DSPBIT_SUSPEND");break;
-	case 0x1D: strcpy(logidx,"LOG_TASK_MBI2BIT_SUSPEND");break;
-	case 0x1E: strcpy(logidx,"LOG_POWER_EXCHANGE");break;
-	case 0x1F: strcpy(logidx,"LOG_LMFD_BUFFER_OVERFLOW");break;
-	case 0x20: strcpy(logidx,"LOG_CMFD_BUFFER_OVERFLOW");break;
-	case 0x21: strcpy(logidx,"LOG_RMFD_BUFFER_OVERFLOW");break;
-	case 0x22: strcpy(logidx,"LOG_HMD_BUFFER_OVERFLOW");break;
-	case 0x23: strcpy(logidx,"LOG_UFCP_BUFFER_OVERFLOW");break;
-	case 0x24: strcpy(logidx,"LOG_MMP_BUFFER_OVERFLOW");break;
-	case 0x25: strcpy(logidx,"LOG_AUDIO_BUFFER_OVERFLOW");break;
-	case 0x26: strcpy(logidx,"LOG_ABM_BUFFER_OVERFLOW");break;
-	case 0x27: strcpy(logidx,"LOG_BBM_BUFFER_OVERFLOW");break;
-	case 0x28: strcpy(logidx,"LOG_CBM_BUFFER_OVERFLOW");break;
-	case 0x29: strcpy(logidx,"LOG_FLY_BUFFER_OVERFLOW");break;
-	case 0x2A: strcpy(logidx,"LOG_BUS_BUFFER_OVERFLOW");break;
-	case 0x2B: strcpy(logidx,"LOG_EW_BUFFER_OVERFLOW");break;
-	case 0x2C: strcpy(logidx,"LOG_MFL_BUFFER_OVERFLOW");break;
-	case 0x2D: strcpy(logidx,"LOG_ISRMMP_BUFFER_OVERFLOW");break;
-	case 0x2E: strcpy(logidx,"LOG_FLY_DUALPORT_RAM_NODATA");break;
-	case 0x2F: strcpy(logidx,"LOG_ISRHDLC_WRITE_ERR");break;
-	case 0x30: strcpy(logidx,"LOG_ISRHDLC_ERR_RECOVER");break;
-	case 0x31: strcpy(logidx,"LOG_HDLC_SNIFFER_ONLINE");break;
-	case 0x32: strcpy(logidx,"LOG_HDLC_SNIFFER_OFFLINE");break;
-	case 0x33: strcpy(logidx,"LOG_ABM_DATA_ERR");break;
-	case 0x34: strcpy(logidx,"LOG_BBM_DATA_ERR");break;
-	case 0x35: strcpy(logidx,"LOG_CBM_DATA_ERR");break;
-	case 0x36: strcpy(logidx,"LOG_ABM_NODATA");break;
-	case 0x37: strcpy(logidx,"LOG_BBM_NODATA");break;
-	case 0x38: strcpy(logidx,"LOG_CBM_NODATA");break;
-	case 0x39: strcpy(logidx,"LOG_DSP1_ERR");break;
-	case 0x3A: strcpy(logidx,"LOG_DSP2_ERR");break;
-	case 0x3B: strcpy(logidx,"LOG_DSP3_ERR");break;
-	case 0x3C: strcpy(logidx,"LOG_DSP4_ERR");break;
-	case 0x3D: strcpy(logidx,"LOG_DSP5_ERR");break;
-	case 0x3E: strcpy(logidx,"LOG_TASK_DSPBIT1_SUSPEND");break;
-	case 0x3F: strcpy(logidx,"LOG_TASK_DSPBIT2_SUSPEND");break;
-	case 0x40: strcpy(logidx,"LOG_MCU_BIN_VALIDITY");break;
-	case 0x41: strcpy(logidx,"LOG_VCM_BIN_VALIDITY");break;
-	case 0x42: strcpy(logidx,"LOG_MCU_PORT_VALUE");break;
-	case 0x43: strcpy(logidx,"LOG_VCM_PORT_VALUE");break;
-	case 0x44: strcpy(logidx,"LOG_FOLDER_TIME_FROM_CCU");break;
-	case 0x45: strcpy(logidx,"LOG_FOLDER_TIME_FROM_MBI");break;
-	case 0x46: strcpy(logidx,"LOG_FILE_TIME_FROM_CCU");break;
-	case 0x47: strcpy(logidx,"LOG_FILE_TIME_FROM_MBI");break;
-    default: break;
-	}
-#endif
 
 	//次数
 	logmsg.property.propertyvalue2 = byteToShort(file_test[2], file_test[3]);
