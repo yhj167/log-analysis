@@ -1,6 +1,6 @@
 /*************************************************
- *ÎÄ¼şÃû£ºhello.h
- *ÃèÊö£ºÖ÷½çÃæÀàÍ·ÎÄ¼ş£¬¶¨Òå¿ªÆôÖ÷½çÃæÀà¡£
+ *æ–‡ä»¶åï¼šhello.h
+ *æè¿°ï¼šä¸»ç•Œé¢ç±»å¤´æ–‡ä»¶ï¼Œå®šä¹‰å¼€å¯ä¸»ç•Œé¢ç±»ã€‚
 *************************************************/
 #ifndef HELLO_H
 #define HELLO_H
@@ -12,95 +12,22 @@
 #include <QStatusBar>
 #include "analysislog.h"
 #include "domparser.h"
-#if 1
-#define POWER_ON					0x0001		   	/*VCMÉÏµç*/
-#define RESET						0x0002         	/*VCM¸´Î»*/
-#define IDR_INSERT					0x0003     	/*DTC´ÓIDRµ¯³öÔÙ´Î½ÓÈëIDR*/
-#define BUFFER_OVERFLOW				0x0004   	/*»º³åÇøÒç³ö*/
-#define DATA_WRITE_START			0x0005   	/*Êı¾İ¿ªÊ¼Ğ´Èë*/
-#define DATA_WRITE_STOP				0x0006		/*Êı¾İÍ£Ö¹Ğ´Èë*/
-#define IEEE1394_BUSRESET			0x0007		/*1394Í¨µÀ¸´Î»*/
-#define DATA_WRITE_FAULT			0X0008		/*Êı¾İĞ´ÈëDTCÊ§°Ü*/
-#define LOG_DSP1_SEMTAKE_ERROR			0X0009	/*vTransBS[0]ÈÎÎñµÈ´ısemIntrId[0]ĞÅºÅÁ¿³¬Ê±*/
-#define LOG_DSP2_SEMTAKE_ERROR			0X000A	/*vTransBS[1]ÈÎÎñµÈ´ısemIntrId[1]ĞÅºÅÁ¿³¬Ê±*/
-#define LOG_DSP3_SEMTAKE_ERROR			0X000B	/*vTransBS[2]ÈÎÎñµÈ´ısemIntrId[2]ĞÅºÅÁ¿³¬Ê±*/
-#define LOG_DSP4_SEMTAKE_ERROR			0X000C	/*vTransBS[3]ÈÎÎñµÈ´ısemIntrId[3]ĞÅºÅÁ¿³¬Ê±*/
-#define LOG_DSP5_SEMTAKE_ERROR			0X000D	/*vTransBS[4]ÈÎÎñµÈ´ısemIntrId[4]ĞÅºÅÁ¿³¬Ê±*/
-#define LOG_TASK_SYSCTRL_SUSPEND		0X000E  /*vcm_idr_commÈÎÎñ¹ÒÆğ*/
-#define LOG_TASK_BMFETCH_SUSPEND		0X000F  /*vcm_mbi_commÈÎÎñ¹ÒÆğ*/
-#define LOG_TASK_DATAFETCH_SUSPEND	0X0010	/*vcm_mcu_commÈÎÎñ¹ÒÆğ*/
-#define LOG_TASK_ISRSEND_SUSPEND		0X0011  /*²»ÓÃ*/
-#define LOG_TASK_IDRSEND_SUSPEND		0X0012	/*vcm_dataTxÈÎÎñ¹ÒÆğ*/
-#define LOG_TASK_TRANSBS0_SUSPEND		0X0013	/*vTransBS[0]ÈÎÎñ¹ÒÆğ*/
-#define LOG_TASK_TRANSBS1_SUSPEND		0X0014  /*vTransBS[1]ÈÎÎñ¹ÒÆğ*/
-#define LOG_TASK_TRANSBS2_SUSPEND		0X0015  /*vTransBS[2]ÈÎÎñ¹ÒÆğ*/
-#define LOG_TASK_TRANSBS3_SUSPEND		0X0016  /*vTransBS[3]ÈÎÎñ¹ÒÆğ*/
-#define LOG_TASK_TRANSBS4_SUSPEND		0X0017  /*vTransBS[4]ÈÎÎñ¹ÒÆğ*/
-#define LOG_CMD_START_VIDEO_RECORD	0X0018	/*ÊÕµ½Æô¶¯ÊÓÆµ¼ÇÂ¼ÃüÁî*/
-#define LOG_CMD_STOP_VIDEO_RECORD		0X0019  /*ÊÕµ½Í£Ö¹ÊÓÆµ¼ÇÂ¼ÃüÁî*/
-#define LOG_EXECUTE_CMD_START_RECORD	0X001A	/*Ö´ĞĞÆô¶¯ÊÓÆµ¼ÇÂ¼ÃüÁî*/
-#define LOG_EXECUTE_CMD_STOP_RECORD		0X001B	/*Ö´ĞĞÍ£Ö¹ÊÓÆµ¼ÇÂ¼ÃüÁî*/
-#define LOG_TASK_DSPBIT_SUSPEND			0X001C	/*vcm_dspbitÈÎÎñ¹ÒÆğ*/
-#define LOG_TASK_MBI2BIT_SUSPEND			0X001D	/*vcm_mbi2bitÈÎÎñ¹ÒÆğ*/
-#define LOG_POWER_EXCHANGE				0x001E				/*²»ÓÃ*/
-#define LOG_LMFD_BUFFER_OVERFLOW			0x001f		/*´æ·ÅLMFDÊÓÆµÊı¾İ»º³åÇø¿Õ¼ä²»×ã*/
-#define LOG_CMFD_BUFFER_OVERFLOW			0x0020		/*´æ·ÅCMFDÊÓÆµÊı¾İ»º³åÇø¿Õ¼ä²»×ã*/
-#define LOG_RMFD_BUFFER_OVERFLOW			0x0021		/*´æ·ÅRMFDÊÓÆµÊı¾İ»º³åÇø¿Õ¼ä²»×ã*/
-#define LOG_HMD_BUFFER_OVERFLOW				0x0022		/*´æ·ÅHMDÊÓÆµÊı¾İ»º³åÇø¿Õ¼ä²»×ã*/
-#define LOG_UFCP_BUFFER_OVERFLOW			0x0023		/*´æ·ÅUFCPÊÓÆµÊı¾İ»º³åÇø¿Õ¼ä²»×ã*/
-#define LOG_MMP_BUFFER_OVERFLOW			0x0024			/*´æ·ÅMMPÊÓÆµÊı¾İ»º³åÇø¿Õ¼ä²»×ã*/
-#define LOG_AUDIO_BUFFER_OVERFLOW		0x0025			/*´æ·ÅÒôÆµÊı¾İ»º³åÇø¿Õ¼ä²»×ã*/
-#define LOG_ABM_BUFFER_OVERFLOW			0x0026 			/*´æ·ÅµÚ0Â·GJB289A×ÜÏß¼à¿ØÊı¾İ»º³åÇø¿Õ¼ä²»×ã*/
-#define LOG_BBM_BUFFER_OVERFLOW			0x0027 			/*´æ·ÅµÚ1Â·GJB289A×ÜÏß¼à¿ØÊı¾İ»º³åÇø¿Õ¼ä²»×ã*/
-#define LOG_CBM_BUFFER_OVERFLOW			0x0028 			/*´æ·ÅµÚ2Â·GJB289A×ÜÏß¼à¿ØÊı¾İ»º³åÇø¿Õ¼ä²»×ã*/
-#define LOG_FLY_BUFFER_OVERFLOW			0x0029			/*´æ·Å·É²ÎÊı¾İ»º³åÇø¿Õ¼ä²»×ã*/
-#define LOG_BUS_BUFFER_OVERFLOW			0x002A			/*´æ·ÅÎäÆ÷Á´Ğ¶ÔØÊı¾İ»º³åÇø¿Õ¼ä²»×ã*/
-#define LOG_EW_BUFFER_OVERFLOW			0x002B			/*´æ·Åµç×ÓÕ½Ğ¶ÔØÊı¾İ»º³åÇø¿Õ¼ä²»×ã*/
-#define LOG_MFL_BUFFER_OVERFLOW			0x002C 			/*´æ·ÅÎäÆ÷ÏµÍ³Êı¾İ»º³åÇø¿Õ¼ä²»×ã*/
-#define LOG_ISRMMP_BUFFER_OVERFLOW		0x002D		/*´æ·ÅÏòCCU·¢ËÍµÄÆ½ÏÔÊÓÆµÊı¾İ»º³åÇø¿Õ¼ä²»×ã*/
-#define LOG_FLY_DUALPORT_RAM_NODATA		0x002E		/*³¬Ê±5´ÎÃ»ÓĞÊÕµ½·É²ÎÊı¾İ*/
-#define LOG_ISRHDLC_WRITE_ERR				0x002F			/*ÓëCCUÍ¨Ñ¶¹ÊÕÏ*/
-#define LOG_ISRHDLC_ERR_RECOVER			0x0030			/*ÓëCCUÍ¨Ñ¶¹ÊÕÏ»Ö¸´Õı³£*/
-#define LOG_HDLC_SNIFFER_ONLINE			0x0031			/*²»ÓÃ*/
-#define LOG_HDLC_SNIFFER_OFFLINE			0x0032 		/*²»ÓÃ*/
-#define LOG_ABM_DATA_ERR					0x0033				/*²»ÓÃ*/
-#define LOG_BBM_DATA_ERR					0x0034				/*²»ÓÃ*/
-#define LOG_CBM_DATA_ERR					0x0035				/*²»ÓÃ*/
-#define LOG_ABM_NODATA					0x0036		/*µÚ0Â·GJB289A×ÜÏß¼à¿ØÊı¾İ³¬¹ı3·ÖÖÓÎŞÊı¾İ*/
-#define LOG_BBM_NODATA					0x0037		/*µÚ1Â·GJB289A×ÜÏß¼à¿ØÊı¾İ³¬¹ı3·ÖÖÓÎŞÊı¾İ*/
-#define LOG_CBM_NODATA					0x0038		/*µÚ2Â·GJB289A×ÜÏß¼à¿ØÊı¾İ³¬¹ı3·ÖÖÓÎŞÊı¾İ*/
-#define LOG_DSP1_ERR						0x0039		/*µÚÒ»¿ÅDSP¹ÊÕÏ£¬¸ù¾İPCIÊ¶±ğË³Ğò*/
-#define LOG_DSP2_ERR						0x003A		/*µÚÒ»¿ÅDSP¹ÊÕÏ£¬¸ù¾İPCIÊ¶±ğË³Ğò*/
-#define LOG_DSP3_ERR						0x003B		/*µÚÒ»¿ÅDSP¹ÊÕÏ£¬¸ù¾İPCIÊ¶±ğË³Ğò*/
-#define LOG_DSP4_ERR						0x003C		/*µÚÒ»¿ÅDSP¹ÊÕÏ£¬¸ù¾İPCIÊ¶±ğË³Ğò*/
-#define LOG_DSP5_ERR						0x003D		/*µÚÒ»¿ÅDSP¹ÊÕÏ£¬¸ù¾İPCIÊ¶±ğË³Ğò*/
-#define LOG_TASK_DSPBIT1_SUSPEND		0x003E
-#define LOG_TASK_DSPBIT2_SUSPEND		0x003F
-#define LOG_MCU_BIN_VALIDITY     0x0040		/*²»ÓÃ*/
-#define LOG_VCM_BIN_VALIDITY     0x0041		/*²»ÓÃ*/
-#define LOG_MCU_PORT_VALUE				0x0042	/*²»ÓÃ*/
-#define LOG_VCM_PORT_VALUE				0x0043	/*²»ÓÃ*/
-#define LOG_FOLDER_TIME_FROM_CCU				0x0044	/*ÎÄ¼ş¼Ğ´ÓCCU»ñÈ¡Ê±¼ä,Add by yhj 20140704*/
-#define LOG_FOLDER_TIME_FROM_MBI				0x0045	/*ÎÄ¼ş¼Ğ´ÓMBI»ñÈ¡Ê±¼ä*/
-#define LOG_FILE_TIME_FROM_CCU				0x0046	/*ÎÄ¼ş´ÓCCU»ñÈ¡Ê±¼ä*/
-#define LOG_FILE_TIME_FROM_MBI				0x0047	/*ÎÄ¼ş´ÓMBI»ñÈ¡Ê±¼ä*/
-#endif
 
 class FindDialog;
 
 /***************************/
 typedef struct {
-	unsigned short propertyvalue1;				/*ÊôĞÔÖµ1£¬±êÊ¶ÊôĞÔÀàĞÍ*/
-	unsigned short propertyvalue2;				/*ÊôĞÔÖµ2£¬±êÊ¶ÊôĞÔ·¢ÉúµÄ´ÎÊı*/
-	unsigned int propertytime;				/*ÊôĞÔ·¢ÉúÊ±µÄÊ±¼ä*/
+	unsigned short propertyvalue1;				/*å±æ€§å€¼1ï¼Œæ ‡è¯†å±æ€§ç±»å‹*/
+	unsigned short propertyvalue2;				/*å±æ€§å€¼2ï¼Œæ ‡è¯†å±æ€§å‘ç”Ÿçš„æ¬¡æ•°*/
+	unsigned int propertytime;				/*å±æ€§å‘ç”Ÿæ—¶çš„æ—¶é—´*/
 }st_logproperty;
 
 typedef struct {
-	unsigned short year;					/*Äê*/
-	unsigned short month	:8;				/*ÔÂ*/	
-	unsigned short day	:8;				/*ÈÕ*/
-	unsigned short us40_l;					/*40usµÄµÍ×Ö(Ê±·ÖÃë)*/
-	unsigned short us40_h;				/*40usµÄ¸ß×Ö(Ê±·ÖÃë)*/
+	unsigned short year;					/*å¹´*/
+	unsigned short month	:8;				/*æœˆ*/	
+	unsigned short day	:8;				/*æ—¥*/
+	unsigned short us40_l;					/*40usçš„ä½å­—(æ—¶åˆ†ç§’)*/
+	unsigned short us40_h;				/*40usçš„é«˜å­—(æ—¶åˆ†ç§’)*/
 }st_logtime;
 
 typedef struct {
@@ -148,7 +75,7 @@ private:
     QString cfgFileName;
 
     /**/
-	QList<LogInfo> loginfos;//ÁĞ±íĞÅÏ¢
+	QList<LogInfo> loginfos;//åˆ—è¡¨ä¿¡æ¯
 	unsigned char file_test[25];
     LOGMSG logmsg;
 
