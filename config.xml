@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="gb18030"?>
 <csc>
-    <entry name="vcm">
-        <log id = "0x0001">POWER_ON</log>
+    <entry name="xxx">
+        <log id = "0x0001">ON</log>
         <log id = "0x0002">RESET</log>
     </entry>
     <entry name="XXX">
